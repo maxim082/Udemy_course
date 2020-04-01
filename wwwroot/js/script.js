@@ -7,7 +7,8 @@ let appData = {
         COUNT_COSTS_REQUEST: 'Сколько у вас обязательных статей расходов?',
         NAME_COST_REQUEST: 'Введите обязательную статью расходов в этом месяце',
         VALUE_COST_REQUEST: 'Во сколько обойдется?',
-        ERROR_MESSAGE: 'Ошибка ввода данных'
+        ERROR_MESSAGE: 'Ошибка ввода данных',
+        INCOME_REQUEST: 'Перечислите ваши источники дохода через запятую'
     },
     money: 0,
     time: new Date(),
@@ -22,7 +23,7 @@ let appData = {
     },
 
     calculateMoneyPerDay: function () {
-        appData.moneyPerDay = (money / 30).toFixed(1);
+        appData.moneyPerDay = (appData.money / 30).toFixed(1);
         alert(`Бюджет пользователя на 1 день ${appData.moneyPerDay}`);
     },
 
@@ -40,9 +41,20 @@ let appData = {
                 appData.expenses[answer1] = answer2;
             }
         }
+    },
+
+    takeIncome: function(){
+        let income = prompt(appData.strings.INCOME_REQUEST);
+        appData.income = income.split(', ');
+        appData.income.sort();
+
+        alert(`Пути дохода пользователя: ${appData.income}`);
     }
-}
+};
 
 appData.takeMoney();
 appData.calculateMoneyPerDay();
 appData.calculateExpences();
+appData.takeIncome();
+
+console.log(appData);
