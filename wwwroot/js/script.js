@@ -1,42 +1,48 @@
 'use strict'
 
-const BUDJET_REQUEST = 'Ваш бюджет на месяц?';
-const DATE_REQUEST = 'Ваш бюджет на месяц?';
-const COUNT_COSTS_REQUEST = 'Сколько у вас обязательных статей расходов?';
-const NAME_COST_REQUEST = 'Введите обязательную статью расходов в этом месяце';
-const VALUE_COST_REQUEST = 'Во сколько обойдется?';
-const ERROR_MESSAGE = 'Ошибка ввода данных';
-
-let money = +prompt(BUDJET_REQUEST);
-let time = prompt(DATE_REQUEST);
-
 let appData = {
-    money: money,
-    time: new Date(time),
+    strings: {
+        BUDJET_REQUEST: 'Ваш бюджет на месяц?',
+        DATE_REQUEST: 'Введите дату в формате yyyy-mm-dd',
+        COUNT_COSTS_REQUEST: 'Сколько у вас обязательных статей расходов?',
+        NAME_COST_REQUEST: 'Введите обязательную статью расходов в этом месяце',
+        VALUE_COST_REQUEST: 'Во сколько обойдется?',
+        ERROR_MESSAGE: 'Ошибка ввода данных'
+    },
+    money: 0,
+    time: new Date(),
     expenses: {},
     optionalExpenses: {},
     income: [],
-    savings: false
-}
+    savings: false,
 
-let count = +prompt(COUNT_COSTS_REQUEST)
+    takeMoney: function () {
+        appData.money = +prompt(appData.strings.BUDJET_REQUEST);
+        appData.time = new Date(prompt(appData.strings.DATE_REQUEST));
+    },
 
-appData.moneyPerDay = calculateMoneyPerDay(appData.money);
+    calculateMoneyPerDay: function () {
+        appData.moneyPerDay = (money / 30).toFixed(1);
+        alert(`Бюджет пользователя на 1 день ${appData.moneyPerDay}`);
+    },
 
-alert(`Бюджет пользователя на 1 день ${appData.moneyPerDay}`);
+    calculateExpences: function () {
+        let count = +prompt(appData.strings.COUNT_COSTS_REQUEST);
 
-for (let a = 0; a < count; a++) {
-    let answer1 = prompt(NAME_COST_REQUEST);
-    let answer2 = prompt(VALUE_COST_REQUEST);
+        for (let a = 0; a < count; a++) {
+            let answer1 = prompt(appData.strings.NAME_COST_REQUEST);
+            let answer2 = prompt(appData.strings.VALUE_COST_REQUEST);
 
-    if (answer1.length == 0 || answer2.length == 0) {
-        console.log(ERROR_MESSAGE);
-        break;
-    } else {
-        appData.expenses[answer1] = answer2;
+            if (answer1.length == 0 || answer2.length == 0) {
+                console.log(appData.strings.ERROR_MESSAGE);
+                break;
+            } else {
+                appData.expenses[answer1] = answer2;
+            }
+        }
     }
 }
 
-function calculateMoneyPerDay(money) {
-    return (money / 30).toFixed(1);
-}
+appData.takeMoney();
+appData.calculateMoneyPerDay();
+appData.calculateExpences();
