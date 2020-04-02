@@ -8,7 +8,9 @@ let appData = {
         NAME_COST_REQUEST: 'Введите обязательную статью расходов в этом месяце',
         VALUE_COST_REQUEST: 'Во сколько обойдется?',
         ERROR_MESSAGE: 'Ошибка ввода данных',
-        INCOME_REQUEST: 'Перечислите ваши источники дохода через запятую'
+        INCOME_REQUEST: 'Перечислите ваши источники дохода через запятую',
+        BUDJET_MESSAGE: 'Бюджет пользователя на 1 день',
+        INCOME_MESSAGE: 'Пути дохода пользователя:'
     },
     money: 0,
     time: new Date(),
@@ -24,7 +26,7 @@ let appData = {
 
     calculateMoneyPerDay: function () {
         appData.moneyPerDay = (appData.money / 30).toFixed(1);
-        alert(`Бюджет пользователя на 1 день ${appData.moneyPerDay}`);
+        alert(`${appData.strings.BUDJET_MESSAGE} ${appData.moneyPerDay}`);
     },
 
     calculateExpences: function () {
@@ -43,12 +45,12 @@ let appData = {
         }
     },
 
-    takeIncome: function(){
+    takeIncome: function () {
         let income = prompt(appData.strings.INCOME_REQUEST);
         appData.income = income.split(', ');
         appData.income.sort();
 
-        alert(`Пути дохода пользователя: ${appData.income}`);
+        alert(`${appData.strings.INCOME_MESSAGE} ${appData.income}`);
     }
 };
 
@@ -58,3 +60,6 @@ appData.calculateExpences();
 appData.takeIncome();
 
 console.log(appData);
+
+// examples from lessons
+let a = 1;
