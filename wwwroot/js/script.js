@@ -1,5 +1,20 @@
 'use strict'
 
+let interface = {
+    startButton: document.querySelector('#start'),
+
+    budgetValue: document.querySelector('.budget-value'),
+    daybudgetValue: document.querySelector('.daybudget-value'),
+    levelValue: document.querySelector('.level-value'),
+    expensesValue: document.querySelector('.expenses-value'),
+    optionalexpensesValue: document.querySelector('.optionalexpenses-value'),
+    incomeValue: document.querySelector('.income-value'),
+    monthsavingsValue: document.querySelector('.monthsavings-value'),
+    yearsavingsValue: document.querySelector('.yearsavings-value'),
+
+    expensesItems: document.querySelectorAll('.expenses-item')
+}
+
 let appData = {
     strings: {
         BUDJET_REQUEST: 'Ваш бюджет на месяц?',
@@ -54,12 +69,11 @@ let appData = {
     }
 };
 
-appData.takeMoney();
-appData.calculateMoneyPerDay();
-appData.calculateExpences();
-appData.takeIncome();
+// appData.takeMoney();
+// appData.calculateMoneyPerDay();
+// appData.calculateExpences();
+// appData.takeIncome();
 
-console.log(appData);
-
-// examples from lessons
-let a = 1;
+// exmples from tutorial
+let body = document.querySelectorAll('body');
+console.log(body);
